@@ -1,0 +1,114 @@
+SELECT Title FROM Movies;
+SELECT Director FROM Movies;
+SELECT Title, Director FROM Movies;
+SELECT Title, Year FROM Movies;
+SELECT Id, Title, Director, Year, Length_minutes FROM Movies;
+
+SELECT Title FROM Movies WHERE Id = 6
+SELECT Title FROM Movies WHERE Year BETWEEN 2000 and 2010
+SELECT Title FROM Movies WHERE Year NOT BETWEEN 2000 and 2010
+SELECT Title FROM Movies WHERE Year BETWEEN 1995 and 2003
+
+SELECT Title FROM movies Where title like "%Toy Story%"
+SELECT TItle FROM movies Where Director like "John Lasseter"
+SELECT TItle FROM movies Where Director not like "John Lasseter"
+SELECT Title FROM movies Where title like "%Wall%"
+
+SELECT Distinct Director FROM Movies ORDER BY director ASC
+Select title from movies order by year desc limit 4
+Select title from movies order by title asc limit 5
+Select title from movies order by title asc limit 5 offset 5
+SELECT column, another_table_column, …
+FROM movie
+INNER JOIN boxoffice
+     ON movie.id = boxoffice.movie_id
+WHERE condition(s)
+LIMIT num_limit OFFSET num_offset;
+SELECT column, another_column, …
+FROM mytable
+INNER/LEFT/RIGHT/FULL JOIN another_table 
+    ON movie.id = boxoffice.movie_id
+WHERE condition(s)
+ORDER BY column, … ASC/DESC
+LIMIT num_limit OFFSET num_offset;
+SELECT column, another_column, …
+FROM mytable
+WHERE column IS/IS NOT NULL
+AND/OR another_condition
+AND/OR …;
+SELECT particle_speed / 2.0 AS half_particle_speed
+FROM physics_data
+WHERE ABS(particle_position) * 10.0 > 500;
+SELECT col_expression AS expr_description, …
+FROM mytable;
+SELECT column AS better_column_name, …
+FROM a_long_widgets_table_name AS mywidgets
+INNER JOIN widget_sales
+  ON mywidgets.id = widget_sales.widget_id;
+SELECT AGG_FUNC(column_or_expression) AS aggregate_description, …
+FROM mytable
+WHERE constraint_expression;
+SELECT AGG_FUNC(column_or_expression) AS aggregate_description, …
+FROM mytable
+WHERE constraint_expression
+GROUP BY column;
+SELECT group_by_column, AGG_FUNC(column_expression) AS aggregate_result_alias, …
+FROM mytable
+WHERE condition
+GROUP BY column
+HAVING group_condition;
+SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
+FROM mytable
+    JOIN another_table
+      ON mytable.column = another_table.column
+    WHERE constraint_expression
+    GROUP BY column
+    HAVING constraint_expression
+    ORDER BY column ASC/DESC
+    LIMIT count OFFSET COUNT;
+INSERT INTO mytable
+VALUES (value_or_expr, another_value_or_expr, …),
+       (value_or_expr_2, another_value_or_expr_2, …),
+       …;
+INSERT INTO mytable
+(column, another_column, …)
+VALUES (value_or_expr, another_value_or_expr, …),
+      (value_or_expr_2, another_value_or_expr_2, …),
+      …;
+INSERT INTO boxoffice
+(movie_id, rating, sales_in_millions)
+VALUES (1, 9.9, 283742034 / 1000000);
+UPDATE mytable
+SET column = value_or_expr, 
+    other_column = another_value_or_expr, 
+    …
+WHERE condition;
+
+DELETE FROM mytable
+WHERE condition;
+
+CREATE TABLE IF NOT EXISTS mytable (
+    column DataType TableConstraint DEFAULT default_value,
+    another_column DataType TableConstraint DEFAULT default_value,
+    …
+);
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    director TEXT,
+    year INTEGER, 
+    length_minutes INTEGER
+);
+
+ALTER TABLE mytable
+ADD column DataType OptionalTableConstraint 
+    DEFAULT default_value;
+
+ALTER TABLE mytable
+DROP column_to_be_deleted;
+
+ALTER TABLE mytable
+RENAME TO new_table_name;
+
+DROP TABLE IF EXISTS mytable;
